@@ -20,6 +20,23 @@ public class ProductRepository {
         return productData.iterator();
     }
 
+    public Product findByName(String name) {
+        for (Product product : productData) {
+            if (product.getProductName().equals(name)) {
+                return product;
+            }
+        }
+        return null;
+    }
+    public void update(Product updatedProduct) {
+        for (Product product : productData) {
+            if (product.getProductName().equals(updatedProduct.getProductName())) {
+                product.setProductQuantity(updatedProduct.getProductQuantity());
+                return;
+            }
+        }
+    }
+
     public void deleteByName(String name) {
         productData.removeIf(p -> p.getProductName().equals(name));
     }

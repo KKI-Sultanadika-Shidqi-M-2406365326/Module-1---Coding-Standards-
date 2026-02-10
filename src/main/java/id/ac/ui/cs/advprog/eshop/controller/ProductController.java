@@ -35,7 +35,23 @@ public class ProductController {
         model.addAttribute("products", allProducts);
         return "productList";
     }
+    @GetMapping("/edit/{name}")
+    public String editProductPage(@PathVariable String name, Model model) {
+        Product product = service.findByName(name);
 
+        if (product == null) {
+            return "redirect:/product/list";
+        }
+
+        model.addAttribute("product", product);
+        return "editProduct";
+    }
+
+    @PostMapping("/edit")
+    public String editProductPost(@ModelAttribute Product product) {
+        service.update(product);
+        return "redirect:/product/list";
+    }
     @GetMapping("/delete/{name}")
     public String deleteProduct(@PathVariable String name) {
         service.deleteByName(name);
