@@ -48,7 +48,6 @@ dependencies {
 tasks.register<Test>("unitTest") {
     description = "Runs unit tests."
     group = "verification"
-
     filter {
         excludeTestsMatching("*FunctionalTest")
     }
@@ -57,7 +56,6 @@ tasks.register<Test>("unitTest") {
 tasks.register<Test>("functionalTest") {
     description = "Runs functional tests."
     group = "verification"
-
     filter {
         includeTestsMatching("*FunctionalTest")
     }
@@ -74,6 +72,13 @@ tasks.test {
     finalizedBy(tasks.jacocoTestReport)
 }
 
-tasks.jacocoTestReport{
+// CRITICAL: SonarCloud needs the XML report
+tasks.jacocoTestReport {
     dependsOn(tasks.test)
+    reports {
+        xml.required.set(true)
+        html.required.set(true)
+    }
 }
+
+
