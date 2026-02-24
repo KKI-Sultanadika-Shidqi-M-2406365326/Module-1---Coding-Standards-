@@ -24,8 +24,16 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Run unit tests and SonarCloud analysis
+      - name: Run unit tests
+        run: ./gradlew clean build
+
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          args: >
+            -Dsonar.projectKey=KKI-Sultanadika-Shidqi-M-2406365326_Module-1---Coding-Standards-
+            -Dsonar.organization=kki-sultanadika-shidqi-m-2406365326
+            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
+            -Dsonar.java.binaries=build/classes
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: ./gradlew test jacocoTestReport sonar --info
-
