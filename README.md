@@ -79,3 +79,39 @@ How to Improve It
 - Keep each test class focused on one main feature
 
 - Make another functional test suite with different setup 
+
+# MODULE 2 - Sultanadika Shidqi M
+
+## Reflection 3:
+
+### 1. List the code quality issue(s) that you fixed during the exercise and explain your strategy
+on fixing them.
+
+Answer:
+I run into a couple of code quality issues which it is tedious when fixing it, heres the list of the issues i fix:
+
+1. Unused Imports and Dead Code
+Some unused imports and unnecessary code were detected by SonarCloud. I fixed this by removing unused statements and cleaning up redundant code to make the codebase simpler and easier to maintain.
+
+2. Unclear Naming
+A few variables and methods had non-descriptive names. I renamed them using clearer and more meaningful naming conventions so the code is easier to read and understand.
+
+3. Minor Code Duplication
+There were small cases of repeated logic. I refactored the duplicated parts into reusable methods to reduce redundancy and improve maintainability.
+
+4. General Code Clean-Up
+Some minor code smells such as formatting and small structural issues were addressed through simple refactoring and better organization of the code.
+
+5. CI and SonarCloud Integration
+To prevent similar issues in the future, I integrated SonarCloud with the CI pipeline so code quality checks run automatically on every change.
+
+
+### 2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current
+implementation has met the definition of Continuous Integration and Continuous
+Deployment? Explain the reasons (minimum 3 sentences)!
+
+Answer:
+
+Yes, I believe the current implementation already meets the definition of Continuous Integration. Every push to the repository automatically triggers the CI pipeline, which builds the project, runs tests, and performs static analysis using SonarCloud. This ensures that code changes are continuously validated and potential issues are detected early.
+
+For Continuous Deployment, the setup also aligns with the definition because the project is automatically deployed to a PaaS platform whenever changes are pushed to the deployment branch. This removes the need for manual deployment and ensures the latest version of the application is always available online. Overall, the integration between automated testing, code quality checks, and auto-deployment reflects both CI and CD principles.
