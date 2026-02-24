@@ -84,8 +84,7 @@ How to Improve It
 
 ## Reflection 3:
 
-### 1. List the code quality issue(s) that you fixed during the exercise and explain your strategy
-on fixing them.
+### 1. List the code quality issue(s) that you fixed during the exercise and explain your strategy on fixing them.
 
 Answer:
 I run into a couple of code quality issues which it is tedious when fixing it, heres the list of the issues i fix:
@@ -106,9 +105,7 @@ Some minor code smells such as formatting and small structural issues were addre
 To prevent similar issues in the future, I integrated SonarCloud with the CI pipeline so code quality checks run automatically on every change.
 
 
-### 2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current
-implementation has met the definition of Continuous Integration and Continuous
-Deployment? Explain the reasons (minimum 3 sentences)!
+### 2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). Do you think the current implementation has met the definition of Continuous Integration and Continuous Deployment? Explain the reasons (minimum 3 sentences)!
 
 Answer:
 
