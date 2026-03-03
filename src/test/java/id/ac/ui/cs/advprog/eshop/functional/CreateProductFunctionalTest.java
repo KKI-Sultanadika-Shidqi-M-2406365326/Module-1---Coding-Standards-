@@ -33,21 +33,21 @@ class CreateProductFunctionalTest {
 
     @Test
     void userCanCreateProductAndSeeItInList(ChromeDriver driver) {
-        // 1. Open CREATE product page (THIS WAS THE BIG BUG)
+
         driver.get(baseUrl + "/product/create");
 
-        // 2. Fill product name (matches @ModelAttribute Product)
+
         WebElement nameInput = driver.findElement(By.name("productName"));
         nameInput.sendKeys("Sampo Cap Bambang");
 
-        // 3. Fill product quantity
+
         WebElement quantityInput = driver.findElement(By.name("productQuantity"));
         quantityInput.sendKeys("100");
 
-        // 4. Submit form
+
         driver.findElement(By.cssSelector("button[type='submit']")).click();
 
-        // 5. Verify redirected to product list and product appears
+
         String pageSource = driver.getPageSource();
         assertTrue(pageSource.contains("Sampo Cap Bambang"));
         assertTrue(pageSource.contains("100"));

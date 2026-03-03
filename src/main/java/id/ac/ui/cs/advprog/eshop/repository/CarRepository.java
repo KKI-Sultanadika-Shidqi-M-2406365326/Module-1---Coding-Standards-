@@ -11,45 +11,36 @@ import java.util.UUID;
 @Repository
 public class CarRepository {
 
-    static int id = 0;
-
-    private List<Car> carData = new ArrayList<>();
+    private final List<Car> carData = new ArrayList<>();
 
     public Car create(Car car) {
-        if (car.getCarId() == null) {
-            UUID uuid = UUID.randomUUID();
-            car.setCarId(uuid.toString());
+        if (car.getCarId() == null || car.getCarId().isBlank()) {
+            car.setCarId(UUID.randomUUID().toString());
         }
 
         carData.add(car);
         return car;
     }
 
-    public Iterator<Car> findAll() {
-        return carData.iterator();
+    public List<Car> findAll() {
+        return new ArrayList<>(carData);
     }
 
     public Car findById(String id) {
-        for (Car car : carData) {
-            if (car.getCarId().equals(id)) {
-                return car;
-            }
-        }
-        return null;
+        return carData.stream()
+                .filter(car -> car.getCarId().equals(id))
+                .findFirst()
+                .orElse(null);
     }
 
     public Car update(String id, Car updatedCar) {
-        for (int i = 0; i < carData.size(); i++) {
-            Car car = carData.get(i);
-            if (car.getCarId().equals(id)) {
-                // Update the existing car with the new information
-                car.setCarName(updatedCar.getCarName());
-                car.setCarColor(updatedCar.getCarColor());
-                car.setCarQuantity(updatedCar.getCarQuantity());
-                return car;
-            }
+        Car existing = findById(id);
+        if (existing != null) {
+            existing.setCarName(updatedCar.getCarName());
+            existing.setCarColor(updatedCar.getCarColor());
+            existing.setCarQuantity(updatedCar.getCarQuantity());
         }
-        return null; // Handle the case where the car is not found
+        return existing;
     }
 
     public void delete(String id) {

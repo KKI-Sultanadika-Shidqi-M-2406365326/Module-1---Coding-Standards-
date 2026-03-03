@@ -24,8 +24,8 @@ public class ProductRepository {
         return product;
     }
 
-    public Iterator<Product> findAll() {
-        return productData.iterator();
+    public List<Product> findAll() {
+        return new ArrayList<>(productData);
     }
 
     public Product findByName(String name) {

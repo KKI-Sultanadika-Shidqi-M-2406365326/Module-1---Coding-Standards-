@@ -12,21 +12,20 @@ import java.util.List;
 @Service
 public class CarServiceImpl implements CarService {
 
-    @Autowired
-    private CarRepository carRepository;
+    private final CarRepository carRepository;
+
+    public CarServiceImpl(CarRepository carRepository) {
+        this.carRepository = carRepository;
+    }
 
     @Override
     public Car create(Car car) {
-        carRepository.create(car);
-        return car;
+        return carRepository.create(car);
     }
 
     @Override
     public List<Car> findAll() {
-        Iterator<Car> carIterator = carRepository.findAll();
-        List<Car> allCar = new ArrayList<>();
-        carIterator.forEachRemaining(allCar::add);
-        return allCar;
+        return carRepository.findAll();
     }
 
     @Override
