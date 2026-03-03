@@ -116,3 +116,49 @@ Answer:
 Yes, I believe the current implementation already meets the definition of Continuous Integration. Every push to the repository automatically triggers the CI pipeline, which builds the project, runs tests, and performs static analysis using SonarCloud. This ensures that code changes are continuously validated and potential issues are detected early.
 
 For Continuous Deployment, the setup also aligns with the definition because the project is automatically deployed to a PaaS platform whenever changes are pushed to the deployment branch. This removes the need for manual deployment and ensures the latest version of the application is always available online. Overall, the integration between automated testing, code quality checks, and auto-deployment reflects both CI and CD principles.
+
+# MODULE 3 - Sultanadika Shidqi M
+
+## Reflection:
+
+### 1) Explain what principles you apply to your project!
+
+In this project, I applied the five SOLID principles to improve the structure and quality of the code.
+
+1.  Applied the Single Responsibility Principle (SRP) by separating the system into clear layers such as Controller, Service, Repository, and Model. Each class is responsible for only one specific task, which makes the system easier to understand and maintain.
+
+2.  Applied the Open/Closed Principle (OCP) by using interfaces such as CarService and ProductService. This allows the system to be extended with new implementations without modifying existing high-level code.
+
+3.  Applied the Liskov Substitution Principle (LSP) by ensuring that implementation classes correctly follow the contracts defined by their interfaces, so they can be substituted without affecting the system’s behavior.
+
+4. Applied the Interface Segregation Principle (ISP) by creating focused and specific interfaces instead of combining unrelated methods into a single large interface.
+
+5. Implemented the Dependency Inversion Principle (DIP) by making high-level modules depend on abstractions rather than concrete classes and using constructor injection to reduce tight coupling.
+
+### 2) Explain the advantages of applying SOLID principles to your project with examples.
+
+Applying SOLID principles in this project provides several important advantages.
+
+1. Improves maintainability. Because each class has a single responsibility, changes in one part of the system do not affect other parts. For example, if the data storage mechanism in CarRepository changes from in-memory storage to a database, the CarController and CarService do not need to be modified.
+
+2. Increases flexibility and extensibility. By using interfaces such as CarService and ProductService, the system can support new implementations without modifying existing high-level code. For example, if I want to create a CarServiceDatabaseImpl, I can implement the same interface and replace the old implementation without changing the controller.
+
+3. Improves testability. Since the controller depends on abstractions instead of concrete classes, it becomes easier to use mock implementations during testing. For example, I can create a mock CarService to test CarController without running the entire repository layer.
+
+4. Reduces tight coupling between components. The controller does not directly depend on repository classes, and service classes do not depend on concrete implementations unnecessarily. This separation makes the architecture cleaner and easier to scale.
+
+Overall, applying SOLID principles makes the project more organized, easier to modify, easier to test, and more scalable for future development.
+
+### 3) Explain the disadvantages of not applying SOLID principles to your project with examples
+
+If SOLID principles are not applied, the project becomes harder to maintain and extend.
+
+- Without Single Responsibility Principle (SRP), one class may handle multiple responsibilities, such as a controller managing business logic and data access at the same time. This makes the code harder to debug and modify.
+
+- Without Open/Closed Principle (OCP), adding new features may require modifying existing classes. For example, if the controller directly depends on CarServiceImpl, changing the implementation would require editing the controller, increasing the risk of errors.
+
+- Without Liskov Substitution Principle (LSP), replacing one implementation with another could break the system if the new implementation does not follow the expected behavior.
+
+- Without Interface Segregation Principle (ISP), interfaces may become too large and force classes to implement unnecessary methods.
+
+- Without Dependency Inversion Principle (DIP), high-level modules would depend directly on concrete classes, creating tight coupling and making testing more difficult.
