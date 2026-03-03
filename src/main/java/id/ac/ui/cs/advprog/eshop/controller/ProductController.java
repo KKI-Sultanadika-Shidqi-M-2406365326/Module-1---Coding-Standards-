@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -39,6 +40,7 @@ public class ProductController {
         model.addAttribute("products", allProducts);
         return "productList";
     }
+
     @GetMapping("/edit/{name}")
     public String editProductPage(@PathVariable String name, Model model) {
         Product product = service.findByName(name);
@@ -56,9 +58,34 @@ public class ProductController {
         service.update(product);
         return "redirect:/product/list";
     }
+
     @GetMapping("/delete/{name}")
     public String deleteProduct(@PathVariable String name) {
         service.deleteByName(name);
+        return "redirect:/product/list";
+    }
+
+    @GetMapping("/editById/{productId}")
+    public String editProductByIdPage(@PathVariable String productId, Model model) {
+        Product product = service.findById(productId);
+
+        if (product == null) {
+            return "redirect:/product/list";
+        }
+
+        model.addAttribute("product", product);
+        return "editProduct";
+    }
+
+    @PostMapping("/editById")
+    public String editProductByIdPost(@ModelAttribute Product product) {
+        service.update(product.getProductId(), product);
+        return "redirect:/product/list";
+    }
+
+    @PostMapping("/delete")
+    public String deleteProductPost(@RequestParam("productId") String productId) {
+        service.deleteProductById(productId);
         return "redirect:/product/list";
     }
 }
