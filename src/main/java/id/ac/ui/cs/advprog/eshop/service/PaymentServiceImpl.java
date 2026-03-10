@@ -86,17 +86,17 @@ public class PaymentServiceImpl implements PaymentService {
 
     private boolean isValidVoucher(String code) {
 
-        if (code == null) return false;
-        if (code.length() != 16) return false;
-        if (!code.startsWith("ESHOP")) return false;
+        if (code == null || code.length() != 16)
+            return false;
 
-        int digits = 0;
+        if (!code.startsWith("ESHOP"))
+            return false;
 
-        for (char c : code.toCharArray()) {
-            if (Character.isDigit(c)) digits++;
-        }
+        long digitCount = code.chars()
+                .filter(Character::isDigit)
+                .count();
 
-        return digits == 8;
+        return digitCount == 8;
     }
 
     private boolean isEmpty(String value) {
