@@ -2,7 +2,6 @@ package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
 import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -25,7 +24,14 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findAll() {
-        return productRepository.findAll();
+        Iterator<Product> iterator = productRepository.findAll();
+        List<Product> products = new ArrayList<>();
+
+        while (iterator.hasNext()) {
+            products.add(iterator.next());
+        }
+
+        return products;
     }
 
     @Override
