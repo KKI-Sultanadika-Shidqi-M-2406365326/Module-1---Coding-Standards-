@@ -12,16 +12,12 @@ public class OrderRepository {
     private List<Order> orderData = new ArrayList<>();
 
     public Order save(Order order) {
-        int i = 0;
-        for (Order savedOrder : orderData) {
-            if (savedOrder.getId().equals(order.getId())) {
-                orderData.remove(i);
-                orderData.add(i, order);
+        for (int i = 0; i < orderData.size(); i++) {
+            if (orderData.get(i).getId().equals(order.getId())) {
+                orderData.set(i, order); // Menimpa elemen lama dengan yang baru
                 return order;
             }
-            i += 1;
         }
-
         orderData.add(order);
         return order;
     }
