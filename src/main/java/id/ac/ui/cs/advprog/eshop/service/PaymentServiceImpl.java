@@ -43,16 +43,17 @@ public class PaymentServiceImpl implements PaymentService {
             String bankName = paymentData.get("bankName");
             String referenceCode = paymentData.get("referenceCode");
 
-            if (isEmpty(bankName) || isEmpty(referenceCode)) {
-                payment.setStatus("REJECTED");
-                order.setStatus("FAILED");
-            } else {
+            boolean validTransfer = !isEmpty(bankName) && !isEmpty(referenceCode);
+
+            if (validTransfer) {
                 payment.setStatus("SUCCESS");
                 order.setStatus("SUCCESS");
+            } else {
+                payment.setStatus("REJECTED");
+                order.setStatus("FAILED");
             }
         }
 
-        // Save payment but return the same object to keep the status set above
         paymentRepository.save(payment);
         return payment;
     }
