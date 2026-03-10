@@ -162,3 +162,31 @@ If SOLID principles are not applied, the project becomes harder to maintain and 
 - Without Interface Segregation Principle (ISP), interfaces may become too large and force classes to implement unnecessary methods.
 
 - Without Dependency Inversion Principle (DIP), high-level modules would depend directly on concrete classes, creating tight coupling and making testing more difficult.
+
+# Module 4
+
+## Reflection
+
+1. Reflect based on Percival (2017) proposed self-reflective questions (in “Principles and Best
+Practice of Testing” submodule, chapter “Evaluating Your Testing Objectives”), whether this
+TDD flow is useful enough for you or not. If not, explain things that you need to do next time
+you make more tests.
+
+
+Answer:
+
+Reflection on TDD based on Percival (2017)
+After completing this tutorial using the Test-Driven Development (TDD) workflow, I found that TDD is helpful in guiding the development process. Writing tests before implementing features helped me understand the expected behavior of the system more clearly. For example, when implementing the payment features, the tests helped define how the system should behave for valid and invalid voucher codes or bank transfer inputs.
+
+However, in some cases I wrote the implementation before fully thinking about the tests, which means I did not strictly follow the RED-GREEN-REFACTOR cycle. Ideally, the tests should fail first before writing the code. In the future, I would try to follow the TDD workflow more strictly so that the tests truly guide the implementation and help catch edge cases earlier.
+
+2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully
+followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you
+create more tests.
+
+Answer:
+
+Reflection on the F.I.R.S.T. principles
+Overall, the unit tests in this tutorial mostly follow the F.I.R.S.T. principles. The tests are fast because they use unit testing and mocking instead of external systems. They are also independent and repeatable since each test runs separately and uses a fresh setup with @BeforeEach. In addition, the tests are self-validating because they use assertions to automatically determine whether they pass or fail.
+
+However, some tests could still be improved by making them more focused and testing only one behavior at a time. In the future, I would try to write clearer and more specific test cases so that they are easier to understand and maintain.
