@@ -109,4 +109,45 @@ class PaymentServiceTest {
 
         assertEquals(2,result.size());
     }
+    @Test
+    void testVoucherRejectedIfLengthNot16() {
+
+        Map<String,String> data = new HashMap<>();
+        data.put("voucherCode","ESHOP123");
+
+        when(paymentRepository.save(any(Payment.class)))
+                .thenAnswer(invocation -> invocation.getArgument(0));
+
+        Payment result = paymentService.addPayment(order,"VOUCHER",data);
+
+        assertEquals("REJECTED", result.getStatus());
+    }
+
+    @Test
+    void testVoucherRejectedIfNotStartingWithESHOP() {
+
+        Map<String,String> data = new HashMap<>();
+        data.put("voucherCode","INVALID123456789");
+
+        when(paymentRepository.save(any(Payment.class)))
+                .thenAnswer(invocation -> invocation.getArgument(0));
+
+        Payment result = paymentService.addPayment(order,"VOUCHER",data);
+
+        assertEquals("REJECTED", result.getStatus());
+    }
+
+    @Test
+    void testVoucherRejectedIfDigitsNot8() {
+
+        Map<String,String> data = new HashMap<>();
+        data.put("voucherCode","ESHOPABCDEFGHJKL");
+
+        when(paymentRepository.save(any(Payment.class)))
+                .thenAnswer(invocation -> invocation.getArgument(0));
+
+        Payment result = paymentService.addPayment(order,"VOUCHER",data);
+
+        assertEquals("REJECTED", result.getStatus());
+    }
 }
