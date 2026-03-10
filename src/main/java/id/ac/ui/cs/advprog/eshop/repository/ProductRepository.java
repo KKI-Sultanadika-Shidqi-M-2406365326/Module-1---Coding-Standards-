@@ -14,7 +14,6 @@ public class ProductRepository {
     private List<Product> productData = new ArrayList<>();
 
     public Product create(Product product) {
-
         if (product.getProductId() == null) {
             UUID uuid = UUID.randomUUID();
             product.setProductId(uuid.toString());
@@ -24,8 +23,8 @@ public class ProductRepository {
         return product;
     }
 
-    public List<Product> findAll() {
-        return new ArrayList<>(productData);
+    public Iterator<Product> findAll() {
+        return productData.iterator();
     }
 
     public Product findByName(String name) {
@@ -47,7 +46,7 @@ public class ProductRepository {
     }
 
     public void deleteByName(String name) {
-        productData.removeIf(p -> p.getProductName().equals(name));
+        productData.removeIf(product -> product.getProductName().equals(name));
     }
 
     public Product findById(String id) {
@@ -70,6 +69,6 @@ public class ProductRepository {
     }
 
     public void delete(String id) {
-        productData.removeIf(p -> p.getProductId().equals(id));
+        productData.removeIf(product -> product.getProductId().equals(id));
     }
 }
