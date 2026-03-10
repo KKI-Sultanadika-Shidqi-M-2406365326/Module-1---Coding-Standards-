@@ -9,11 +9,11 @@ import java.util.Map;
 @Setter
 public class Payment {
 
-    private String id;
-    private String method;
+    private final String id;
+    private final String method;
     private String status;
-    private Map<String,String> paymentData;
-    private Order order;
+    private final Map<String,String> paymentData;
+    private final Order order;
 
     public Payment(String id, Order order, String method, Map<String,String> paymentData) {
         this.id = id;
