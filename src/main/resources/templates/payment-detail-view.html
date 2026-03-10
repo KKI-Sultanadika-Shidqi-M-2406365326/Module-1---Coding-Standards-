@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<h2>Payment Detail</h2>
+
+<p>
+    Payment ID:
+    <span th:text="${payment.id}"></span>
+</p>
+
+<p>
+    Method:
+    <span th:text="${payment.method}"></span>
+</p>
+
+<p>
+    Status:
+    <span th:text="${payment.status}"></span>
+</p>
+
+<a href="/payment/detail">Search Again</a>
+
+</body>
+</html>
