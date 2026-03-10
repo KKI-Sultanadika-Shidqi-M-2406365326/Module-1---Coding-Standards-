@@ -150,4 +150,33 @@ class PaymentServiceTest {
 
         assertEquals("REJECTED", result.getStatus());
     }
+    @Test
+    void testBankTransferRejectedIfBankNameNull() {
+
+        Map<String,String> data = new HashMap<>();
+        data.put("bankName", null);
+        data.put("referenceCode","REF123");
+
+        when(paymentRepository.save(any(Payment.class)))
+                .thenAnswer(invocation -> invocation.getArgument(0));
+
+        Payment result = paymentService.addPayment(order,"BANK_TRANSFER",data);
+
+        assertEquals("REJECTED", result.getStatus());
+    }
+
+    @Test
+    void testBankTransferRejectedIfReferenceCodeNull() {
+
+        Map<String,String> data = new HashMap<>();
+        data.put("bankName","BCA");
+        data.put("referenceCode",null);
+
+        when(paymentRepository.save(any(Payment.class)))
+                .thenAnswer(invocation -> invocation.getArgument(0));
+
+        Payment result = paymentService.addPayment(order,"BANK_TRANSFER",data);
+
+        assertEquals("REJECTED", result.getStatus());
+    }
 }
